@@ -6,6 +6,7 @@ const news = defineCollection({
     title: z.string(),
     date: z.date(),
     tags: z.array(z.string()).default([]),
+    category: z.enum(['学术前沿', '产业界', '开源社区', '财经信息']),
     summary: z.string().optional(),
   }),
 });
