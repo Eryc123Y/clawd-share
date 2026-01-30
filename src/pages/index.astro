@@ -2,7 +2,7 @@
 import MainLayout from '../layouts/MainLayout.astro';
 import { getCollection } from 'astro:content';
 
-// 按分类获取资讯
+// 按分类获取资讯（目前为空）
 const allNews = await getCollection('news');
 const categories = ['学术前沿', '产业界', '开源社区', '财经信息'];
 
@@ -15,15 +15,6 @@ const newsByCategory = categories.map((category) => {
       .slice(0, 4),
   };
 });
-
-// 教程和研究
-const tutorials = (await getCollection('tutorials'))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 3);
-
-const research = (await getCollection('research'))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 2);
 ---
 
 <MainLayout title="每日 AI 资讯">
@@ -50,6 +41,15 @@ const research = (await getCollection('research'))
       }
     }
 
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+    }
+
     .hero {
       min-height: 85vh;
       display: flex;
@@ -71,8 +71,8 @@ const research = (await getCollection('research'))
       left: 0;
       width: 100%;
       height: 100%;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232EC4B6' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-      }
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232EC4B6' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+    }
 
     .hero-badge {
       display: inline-flex;
@@ -171,104 +171,31 @@ const research = (await getCollection('research'))
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     }
 
-    .news-card {
-      animation: fadeInUp 0.6s ease-out both;
-    }
-
-    .section-header {
-      display: flex;
-      align-items: baseline;
-      gap: 1rem;
-      margin-bottom: 3rem;
-      flex-wrap: wrap;
-    }
-
-    .section-header h2 {
-      margin: 0;
-      position: relative;
-      display: inline;
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 2rem;
-    }
-
-    .section-header h2::after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 80px;
-      height: 4px;
-      background: #FF6B35;
-    }
-
-    .section-count {
-      font-family: 'Space Mono', monospace;
-      font-size: 3rem;
-      font-weight: 700;
-      color: #FF6B35;
-      line-height: 1;
-    }
-
-    .tutorial-grid {
-      display: grid;
-      gap: 1.5rem;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    }
-
-    .tutorial-card {
-      animation: fadeInUp 0.6s ease-out both;
-    }
-
-    .research-grid {
-      display: grid;
-      gap: 1.5rem;
-    }
-
-    .research-card {
-      animation: fadeInUp 0.6s ease-out both;
-    }
-
-    .difficulty-badge {
-      display: inline-block;
-      padding: 0.25rem 0.75rem;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.75rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      border: 2px solid;
-      background: transparent;
-    }
-
-    .difficulty-beginner {
-      border-color: #2EC4B6;
-      color: #2EC4B6;
-    }
-
-    .difficulty-intermediate {
-      border-color: #FF6B35;
-      color: #FF6B35;
-    }
-
-    .difficulty-advanced {
-      border-color: #F7C59F;
-      color: #F7C59F;
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 1rem;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.75rem;
-    }
-
-    .tag {
-      padding: 0.25rem 0.75rem;
-      background: #1A1A2E;
-      color: #FEF9E7;
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: white;
+      border: 2px dashed #1A1A2E;
       border-radius: 0;
+    }
+
+    .empty-state h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #1A1A2E;
+    }
+
+    .empty-state p {
+      color: #666;
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    .empty-state .emoji {
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+      display: block;
     }
   </style>
 
@@ -291,70 +218,29 @@ const research = (await getCollection('research'))
         {category === '财经信息' && <span class="category-icon">💰</span>}
         <h2>{category}</h2>
       </div>
-      <div class="news-grid">
-        {items.map((item, index) => (
-          <article class="card news-card" style="animation-delay: {index * 0.15}s">
-            <time style="font-family: 'Space Mono', monospace; font-size: 0.875rem; color: #666; display: block; margin-bottom: 0.75rem;">
-              {item.data.date.toLocaleDateString('zh-CN')}
-            </time>
-            <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">{item.data.title}</h3>
-            <p style="color: #666; line-height: 1.7; font-size: 0.9rem;">{item.data.summary}</p>
-            <div class="tags">
-              {item.data.tags.map((tag) => <span class="tag">#{tag}</span>)}
-            </div>
-          </article>
-        ))}
-      </div>
+      
+      {items.length === 0 ? (
+        <div class="empty-state">
+          <span class="emoji">📭</span>
+          <h3>暂无内容</h3>
+          <p>{category} 板块的资讯正在准备中，敬请期待。</p>
+        </div>
+      ) : (
+        <div class="news-grid">
+          {items.map((item, index) => (
+            <article class="card news-card" style="animation-delay: {index * 0.15}s">
+              <time style="font-family: 'Space Mono', monospace; font-size: 0.875rem; color: #666; display: block; margin-bottom: 0.75rem;">
+                {item.data.date.toLocaleDateString('zh-CN')}
+              </time>
+              <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">{item.data.title}</h3>
+              <p style="color: #666; line-height: 1.7; font-size: 0.9rem;">{item.data.summary}</p>
+              <div class="tags">
+                {item.data.tags.map((tag) => <span class="tag">#{tag}</span>)}
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
     </section>
   ))}
-
-  <!-- Tutorials Section -->
-  <section id="tutorials">
-    <div class="section-header">
-      <span class="section-count">02</span>
-      <h2>深度教程</h2>
-    </div>
-    <div class="tutorial-grid">
-      {tutorials.map((item, index) => (
-        <article class="card tutorial-card" style="animation-delay: {index * 0.15}s">
-          <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">{item.data.title}</h3>
-          <p style="color: #666; line-height: 1.7; font-size: 0.9rem; margin-bottom: 1rem;">{item.data.summary}</p>
-          <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
-            <span class={`difficulty-badge difficulty-${item.data.difficulty}`}>
-              {item.data.difficulty === 'beginner' && '初级'}
-              {item.data.difficulty === 'intermediate' && '中级'}
-              {item.data.difficulty === 'advanced' && '高级'}
-            </span>
-            <div class="tags">
-              {item.data.tags.map((tag) => <span class="tag">#{tag}</span>)}
-            </div>
-          </div>
-        </article>
-      ))}
-    </div>
-  </section>
-
-  <!-- Research Section -->
-  <section id="research">
-    <div class="section-header">
-      <span class="section-count">03</span>
-      <h2>研究报告</h2>
-    </div>
-    <div class="research-grid">
-      {research.map((item, index) => (
-        <article class="card research-card" style="background: linear-gradient(135deg, #FEF9E7 0%, #F7C59F 20%, #FEF9E7 40%); border-color: #FF6B35; animation-delay: {index * 0.15}s">
-          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem;">
-            <h3 style="font-size: 1.5rem;">{item.data.title}</h3>
-            <time style="font-family: 'Space Mono', monospace; font-size: 0.875rem; white-space: nowrap; color: #666;">
-              {item.data.date.toLocaleDateString('zh-CN')}
-            </time>
-          </div>
-          <p style="color: #666; line-height: 1.7; margin-bottom: 1.5rem; font-size: 0.95rem;">{item.data.summary}</p>
-          <div class="tags">
-            {item.data.tags.map((tag) => <span class="tag" style="background: #FF6B35; color: white;">#{tag}</span>)}
-          </div>
-        </article>
-      ))}
-    </div>
-  </section>
 </MainLayout>
