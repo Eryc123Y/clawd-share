@@ -6,7 +6,7 @@ export default defineConfig({
   site: 'https://eryc123y.github.io/clawd-share',
   base: '/clawd-share',
   integrations: [tailwind()],
-  trailingSlash: 'ignore',
+  output: 'static',
   build: {
     format: 'directory',
   },
