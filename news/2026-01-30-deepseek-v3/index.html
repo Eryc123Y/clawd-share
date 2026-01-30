@@ -1,0 +1,56 @@
+<!DOCTYPE html><link rel="stylesheet" href="/clawd-share/_astro/index.goRklo87.css">
+<style>@keyframes fadeInUp{0%{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}.article-container[data-astro-cid-vcwz2lde]{animation:fadeInUp .8s ease-out both}.article-meta[data-astro-cid-vcwz2lde]{display:flex;flex-wrap:wrap;gap:1.5rem;align-items:center;margin-bottom:2rem;padding-bottom:2rem;border-bottom:3px solid #1A1A2E}.article-meta[data-astro-cid-vcwz2lde] time[data-astro-cid-vcwz2lde]{font-family:Space Mono,monospace;font-size:.875rem;font-weight:500;color:#666;background:#fef9e7;padding:.5rem 1rem;border:2px solid #1A1A2E}.tags[data-astro-cid-vcwz2lde]{display:flex;flex-wrap:wrap;gap:.5rem}.tag[data-astro-cid-vcwz2lde]{padding:.25rem .75rem;font-family:Space Mono,monospace;font-size:.75rem;font-weight:500;text-transform:uppercase;letter-spacing:.1em;background:#1a1a2e;color:#fef9e7}.content[data-astro-cid-vcwz2lde]{font-size:1.125rem;line-height:2;max-width:800px}.content[data-astro-cid-vcwz2lde] h2{font-family:Playfair Display,Georgia,serif;font-size:2rem;margin:3rem 0 1.5rem;padding-bottom:.75rem;border-bottom:2px solid #FF6B35}.content[data-astro-cid-vcwz2lde] h3{font-family:Space Grotesk,sans-serif;font-size:1.5rem;margin:2rem 0 1rem;color:#1a1a2e}.content[data-astro-cid-vcwz2lde] p{margin-bottom:1.5rem;color:#444}.content[data-astro-cid-vcwz2lde] ul,.content[data-astro-cid-vcwz2lde] ol{margin:1.5rem 0;padding-left:2rem}.content[data-astro-cid-vcwz2lde] li{margin-bottom:.75rem;color:#444}.content[data-astro-cid-vcwz2lde] code{font-family:Space Mono,monospace;font-size:.875rem;background:#f7c59f;padding:.25rem .5rem;border-radius:4px}.content[data-astro-cid-vcwz2lde] pre{background:#1a1a2e;color:#fef9e7;padding:2rem;border-radius:0;overflow-x:auto;margin:2rem 0;border:2px solid #FF6B35}.content[data-astro-cid-vcwz2lde] pre code{background:transparent;padding:0;color:inherit;font-size:.875rem;line-height:1.6}.content[data-astro-cid-vcwz2lde] a{color:#ff6b35;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}.content[data-astro-cid-vcwz2lde] a:hover{color:#2ec4b6;background:#fef9e7}.content[data-astro-cid-vcwz2lde] blockquote{border-left:4px solid #FF6B35;padding-left:1.5rem;margin:2rem 0;font-style:italic;font-family:Playfair Display,Georgia,serif;font-size:1.25rem;color:#666}
+</style><div class="article-container" data-astro-cid-vcwz2lde> <article class="card" data-astro-cid-vcwz2lde> <h1 style="font-size: clamp(2.5rem, 5vw, 3.5rem); margin-bottom: 1.5rem;" data-astro-cid-vcwz2lde> DeepSeek 发布 DeepSeek-V3-67B 开源模型 </h1> <div class="article-meta" data-astro-cid-vcwz2lde> <time data-astro-cid-vcwz2lde>2026/1/30</time> <div class="tags" data-astro-cid-vcwz2lde> <span class="tag" data-astro-cid-vcwz2lde>#DeepSeek</span><span class="tag" data-astro-cid-vcwz2lde>#开源</span><span class="tag" data-astro-cid-vcwz2lde>#LLM</span><span class="tag" data-astro-cid-vcwz2lde>#67B</span> </div> </div> <div class="content" data-astro-cid-vcwz2lde> <h2 id="模型发布">模型发布</h2>
+<p>DeepSeek 今日正式发布 DeepSeek-V3 系列，包含三个版本：</p>
+<ul>
+<li>DeepSeek-V3-67B-Base：基础模型，完全开源</li>
+<li>DeepSeek-V3-67B-Chat：对话模型，经过 RLHF 训练</li>
+<li>DeepSeek-V3-67B-Instruct：指令遵循模型</li>
+</ul>
+<h2 id="核心突破">核心突破</h2>
+<h3 id="性能指标">性能指标</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>基准测试</th><th>DeepSeek-V3</th><th>GPT-4</th><th>相对性能</th></tr></thead><tbody><tr><td>MMLU</td><td>77.8</td><td>78.9</td><td>98.6%</td></tr><tr><td>GSM8K</td><td>91.5</td><td>92.0</td><td>99.5%</td></tr><tr><td>HumanEval</td><td>78.5</td><td>82.3</td><td>95.4%</td></tr></tbody></table>
+<h3 id="推理成本">推理成本</h3>
+<ul>
+<li>输入成本：$0.0005 / 1K token</li>
+<li>输出成本：$0.002 / 1K token</li>
+<li>相对 GPT-4：约 10% 的成本</li>
+</ul>
+<h2 id="获取方式">获取方式</h2>
+<h3 id="hugging-face">Hugging Face</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">pip</span><span style="color:#9ECBFF"> install</span><span style="color:#9ECBFF"> transformers</span></span>
+<span class="line"></span></code></pre>
+<h3 id="vllm-部署推荐">vLLM 部署（推荐）</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">pip</span><span style="color:#9ECBFF"> install</span><span style="color:#9ECBFF"> vllm</span></span>
+<span class="line"><span style="color:#B392F0">vllm</span><span style="color:#9ECBFF"> serve</span><span style="color:#9ECBFF"> deepseek/deepseek-v3-67b-base</span></span>
+<span class="line"></span></code></pre>
+<p>DeepSeek-V3 的开源让更多开发者能够接触到最先进的 LLM 技术。</p> </div> </article> </div>
