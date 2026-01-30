@@ -16,59 +16,365 @@ const research = (await getCollection('research'))
 ---
 
 <MainLayout title="分享前端开发与 AI 技术的智慧">
+  <style>
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(60px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero h1 {
+      animation: fadeInUp 1s ease-out 0.2s both;
+    }
+
+    .hero p {
+      animation: fadeInUp 1s ease-out 0.4s both;
+      max-width: 600px;
+      font-size: 1.25rem;
+      color: #666;
+    }
+
+    .floating-shapes {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.1;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .shape:nth-child(1) {
+      width: 300px;
+      height: 300px;
+      background: #FF6B35;
+      top: 10%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .shape:nth-child(2) {
+      width: 200px;
+      height: 200px;
+      background: #2EC4B6;
+      top: 60%;
+      right: 10%;
+      animation-delay: 2s;
+    }
+
+    .shape:nth-child(3) {
+      width: 150px;
+      height: 150px;
+      background: #F7C59F;
+      bottom: 20%;
+      left: 20%;
+      animation-delay: 4s;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .section-header h2 {
+      margin: 0;
+      position: relative;
+      display: inline;
+    }
+
+    .section-header h2::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 80px;
+      height: 4px;
+      background: #FF6B35;
+    }
+
+    .section-count {
+      font-family: 'Space Mono', monospace;
+      font-size: 3rem;
+      font-weight: 700;
+      color: #FF6B35;
+      line-height: 1;
+    }
+
+    .news-grid {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+
+    .news-card {
+      animation: fadeInUp 0.8s ease-out both;
+    }
+
+    .news-card:nth-child(1) { animation-delay: 0.1s; }
+    .news-card:nth-child(2) { animation-delay: 0.2s; }
+    .news-card:nth-child(3) { animation-delay: 0.3s; }
+
+    .tutorial-grid {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+
+    .tutorial-card {
+      animation: fadeInUp 0.8s ease-out both;
+    }
+
+    .tutorial-card:nth-child(1) { animation-delay: 0.4s; }
+    .tutorial-card:nth-child(2) { animation-delay: 0.5s; }
+    .tutorial-card:nth-child(3) { animation-delay: 0.6s; }
+
+    .research-grid {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .research-card {
+      animation: fadeInUp 0.8s ease-out both;
+    }
+
+    .research-card:nth-child(1) { animation-delay: 0.7s; }
+    .research-card:nth-child(2) { animation-delay: 0.8s; }
+
+    .difficulty-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border: 2px solid;
+      background: transparent;
+    }
+
+    .difficulty-beginner {
+      border-color: #2EC4B6;
+      color: #2EC4B6;
+    }
+
+    .difficulty-intermediate {
+      border-color: #FF6B35;
+      color: #FF6B35;
+    }
+
+    .difficulty-advanced {
+      border-color: #F7C59F;
+      color: #F7C59F;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+    }
+
+    .tag {
+      padding: 0.25rem 0.75rem;
+      background: #1A1A2E;
+      color: #FEF9E7;
+      border-radius: 0;
+    }
+
+    .resource-grid {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .resource-card {
+      background: white;
+      border: 2px solid #1A1A2E;
+      padding: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .resource-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 8px 8px 0 #1A1A2E;
+    }
+
+    .resource-card h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .resource-card ul {
+      list-style: none;
+    }
+
+    .resource-card li {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.875rem;
+    }
+
+    .resource-card li:last-child {
+      border-bottom: none;
+    }
+
+    .agent-tracer {
+      background: linear-gradient(135deg, #1A1A2E 0%, #2D2D44 100%);
+      color: #FEF9E7;
+      padding: 4rem;
+      border: 3px solid #2EC4B6;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .agent-tracer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232EC4B6' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      }
+
+    .agent-tracer h2 {
+      position: relative;
+      z-index: 1;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 1.5rem;
+      margin: 2rem 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .feature-icon {
+      font-size: 1.5rem;
+      width: 3rem;
+      height: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #2EC4B6;
+      color: #1A1A2E;
+      font-weight: 700;
+      border-radius: 50%;
+    }
+  </style>
+
   <!-- Hero Section -->
-  <section class="text-center py-16 mb-12">
-    <h1 class="text-5xl font-bold text-gray-900 mb-6">
-      分享前端开发与 AI 技术的智慧
-    </h1>
-    <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-      探索前沿技术，深度解析行业趋势，为您提供有价值的见解和实用资源。
-    </p>
+  <section class="hero">
+    <div class="floating-shapes">
+      <div class="shape"></div>
+      <div class="shape"></div>
+      <div class="shape"></div>
+    </div>
+    <h1>分享前端开发与<br/>AI 技术的智慧</h1>
+    <p>探索前沿技术，深度解析行业趋势，为您<br/>提供有价值的见解和实用资源。</p>
   </section>
 
   <!-- News Section -->
-  <section id="news" class="mb-16">
-    <div class="flex items-center gap-2 mb-6">
-      <span class="text-2xl">📊</span>
-      <h2 class="text-2xl font-bold text-gray-900">最新资讯</h2>
+  <section id="news">
+    <div class="section-header">
+      <span class="section-count">01</span>
+      <h2>最新资讯</h2>
     </div>
-    <div class="grid gap-6">
-      {news.map((item) => (
-        <article class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-          <div class="flex items-start justify-between gap-4 mb-2">
-            <h3 class="text-xl font-semibold text-gray-900">{item.data.title}</h3>
-            <time class="text-sm text-gray-500 whitespace-nowrap">
-              {item.data.date.toLocaleDateString('zh-CN')}
-            </time>
+    <div class="news-grid">
+      {news.map((item, index) => (
+        <article class="card news-card">
+          <time style="font-family: 'Space Mono', monospace; font-size: 0.875rem; color: #666; display: block; margin-bottom: 1rem;">
+            {item.data.date.toLocaleDateString('zh-CN')}
+          </time>
+          <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">{item.data.title}</h3>
+          <p style="color: #666; line-height: 1.8;">{item.data.summary}</p>
+          <div class="tags">
+            {item.data.tags.map((tag) => <span class="tag">#{tag}</span>)}
           </div>
-          <p class="text-gray-600">{item.data.summary}</p>
         </article>
       ))}
     </div>
   </section>
 
   <!-- Tutorials Section -->
-  <section id="tutorials" class="mb-16">
-    <div class="flex items-center gap-2 mb-6">
-      <span class="text-2xl">📚</span>
-      <h2 class="text-2xl font-bold text-gray-900">精选教程</h2>
+  <section id="tutorials">
+    <div class="section-header">
+      <span class="section-count">02</span>
+      <h2>精选教程</h2>
     </div>
-    <div class="grid gap-6 md:grid-cols-2">
-      {tutorials.map((item) => (
-        <article class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-          <div class="flex items-start justify-between gap-4 mb-2">
-            <h3 class="text-lg font-semibold text-gray-900">{item.data.title}</h3>
-          </div>
-          <p class="text-gray-600 mb-3">{item.data.summary}</p>
-          <div class="flex items-center gap-3 text-sm">
-            <span class="px-2 py-1 bg-blue-50 text-blue-700 rounded">
+    <div class="tutorial-grid">
+      {tutorials.map((item, index) => (
+        <article class="card tutorial-card">
+          <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">{item.data.title}</h3>
+          <p style="color: #666; line-height: 1.8; margin-bottom: 1.5rem;">{item.data.summary}</p>
+          <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+            <span class={`difficulty-badge difficulty-${item.data.difficulty}`}>
               {item.data.difficulty === 'beginner' && '初级'}
               {item.data.difficulty === 'intermediate' && '中级'}
               {item.data.difficulty === 'advanced' && '高级'}
             </span>
-            {item.data.tags.map((tag) => (
-              <span class="text-gray-500">#{tag}</span>
-            ))}
+            <div class="tags">
+              {item.data.tags.map((tag) => <span class="tag">#{tag}</span>)}
+            </div>
           </div>
         </article>
       ))}
@@ -76,93 +382,96 @@ const research = (await getCollection('research'))
   </section>
 
   <!-- Research Section -->
-  <section id="research" class="mb-16">
-    <div class="flex items-center gap-2 mb-6">
-      <span class="text-2xl">🔬</span>
-      <h2 class="text-2xl font-bold text-gray-900">深度研究</h2>
+  <section id="research">
+    <div class="section-header">
+      <span class="section-count">03</span>
+      <h2>深度研究</h2>
     </div>
-    <div class="grid gap-6">
-      {research.map((item) => (
-        <article class="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg border border-blue-100">
-          <div class="flex items-start justify-between gap-4 mb-3">
-            <h3 class="text-xl font-semibold text-gray-900">{item.data.title}</h3>
-            <time class="text-sm text-gray-500 whitespace-nowrap">
+    <div class="research-grid">
+      {research.map((item, index) => (
+        <article class="card research-card" style="background: linear-gradient(135deg, #FEF9E7 0%, #F7C59F 20%, #FEF9E7 40%); border-color: #FF6B35;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem;">
+            <h3 style="font-size: 1.75rem;">{item.data.title}</h3>
+            <time style="font-family: 'Space Mono', monospace; font-size: 0.875rem; white-space: nowrap; color: #666;">
               {item.data.date.toLocaleDateString('zh-CN')}
             </time>
           </div>
-          <p class="text-gray-700">{item.data.summary}</p>
+          <p style="color: #666; line-height: 1.8; margin-bottom: 1.5rem;">{item.data.summary}</p>
+          <div class="tags">
+            {item.data.tags.map((tag) => <span class="tag" style="background: #FF6B35; color: white;">#{tag}</span>)}
+          </div>
         </article>
       ))}
     </div>
   </section>
 
   <!-- Resources Section -->
-  <section id="resources" class="mb-16">
-    <div class="flex items-center gap-2 mb-6">
-      <span class="text-2xl">💎</span>
-      <h2 class="text-2xl font-bold text-gray-900">推荐资源</h2>
+  <section id="resources">
+    <div class="section-header">
+      <span class="section-count">04</span>
+      <h2>推荐资源</h2>
     </div>
-    <div class="grid gap-6 md:grid-cols-3">
-      <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-        <h3 class="font-semibold text-gray-900 mb-4">📦 官方文档</h3>
-        <ul class="space-y-2">
-          <li><a href="https://react.dev" target="_blank" class="text-blue-600 hover:underline">React 官方文档</a></li>
-          <li><a href="https://nextjs.org/docs" target="_blank" class="text-blue-600 hover:underline">Next.js 文档</a></li>
-          <li><a href="https://developer.mozilla.org" target="_blank" class="text-blue-600 hover:underline">MDN 文档</a></li>
-          <li><a href="https://github.com" target="_blank" class="text-blue-600 hover:underline">GitHub 文档</a></li>
+    <div class="resource-grid">
+      <div class="resource-card">
+        <h3>📦 官方文档</h3>
+        <ul>
+          <li><a href="https://react.dev" target="_blank">React 官方文档</a></li>
+          <li><a href="https://nextjs.org/docs" target="_blank">Next.js 文档</a></li>
+          <li><a href="https://developer.mozilla.org" target="_blank">MDN 文档</a></li>
+          <li><a href="https://github.com" target="_blank">GitHub 文档</a></li>
         </ul>
       </div>
-      <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-        <h3 class="font-semibold text-gray-900 mb-4">🛠️ 开发工具</h3>
-        <ul class="space-y-2">
-          <li><a href="https://vitejs.dev" target="_blank" class="text-blue-600 hover:underline">Vite</a></li>
-          <li><a href="https://esbuild.dev" target="_blank" class="text-blue-600 hover:underline">esbuild</a></li>
-          <li><a href="https://swc.rs" target="_blank" class="text-blue-600 hover:underline">SWC</a></li>
-          <li><a href="https://rollupjs.org" target="_blank" class="text-blue-600 hover:underline">Rollup</a></li>
+      <div class="resource-card">
+        <h3>🛠️ 开发工具</h3>
+        <ul>
+          <li><a href="https://vitejs.dev" target="_blank">Vite</a></li>
+          <li><a href="https://esbuild.dev" target="_blank">esbuild</a></li>
+          <li><a href="https://swc.rs" target="_blank">SWC</a></li>
+          <li><a href="https://rollupjs.org" target="_blank">Rollup</a></li>
         </ul>
       </div>
-      <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-        <h3 class="font-semibold text-gray-900 mb-4">🎨 设计资源</h3>
-        <ul class="space-y-2">
-          <li><a href="https://dribbble.com" target="_blank" class="text-blue-600 hover:underline">Dribbble</a></li>
-          <li><a href="https://behance.net" target="_blank" class="text-blue-600 hover:underline">Behance</a></li>
-          <li><a href="https://figma.com" target="_blank" class="text-blue-600 hover:underline">Figma</a></li>
-          <li><a href="https://canva.com" target="_blank" class="text-blue-600 hover:underline">Canva</a></li>
+      <div class="resource-card">
+        <h3>🎨 设计资源</h3>
+        <ul>
+          <li><a href="https://dribbble.com" target="_blank">Dribbble</a></li>
+          <li><a href="https://behance.net" target="_blank">Behance</a></li>
+          <li><a href="https://figma.com" target="_blank">Figma</a></li>
+          <li><a href="https://canva.com" target="_blank">Canva</a></li>
         </ul>
       </div>
     </div>
   </section>
 
   <!-- Agent-Tracer Section -->
-  <section class="bg-gradient-to-r from-gray-800 to-gray-900 text-white p-8 rounded-xl mb-16">
-    <div class="flex items-center gap-2 mb-4">
-      <span class="text-2xl">🔭</span>
-      <h2 class="text-2xl font-bold">Agent-Tracer 深度研究</h2>
+  <section class="agent-tracer">
+    <div class="section-header" style="margin-bottom: 2rem;">
+      <span class="section-count" style="color: #FEF9E7;">05</span>
+      <h2 style="color: #FEF9E7;">🔭 Agent-Tracer 深度研究</h2>
     </div>
-    <p class="text-gray-300 mb-4">
+    <p style="font-size: 1.25rem; margin-bottom: 2rem; max-width: 800px; line-height: 1.8;">
       基于 agent-trace.dev 开发的智能体追踪平台，提供实时监控、分析和优化 AI Agent 的能力。
     </p>
-    <div class="grid gap-3 mb-4">
-      <div class="flex items-center gap-2">
-        <span>📊</span>
+    <div class="feature-list">
+      <div class="feature-item">
+        <div class="feature-icon">📊</div>
         <span>实时追踪 - 监控 AI Agent 的行为和性能</span>
       </div>
-      <div class="flex items-center gap-2">
-        <span>🔍</span>
+      <div class="feature-item">
+        <div class="feature-icon">🔍</div>
         <span>深度分析 - 分析 Agent 的决策过程和推理链</span>
       </div>
-      <div class="flex items-center gap-2">
-        <span>⚡</span>
+      <div class="feature-item">
+        <div class="feature-icon">⚡</div>
         <span>优化建议 - 基于数据提供具体的优化建议</span>
       </div>
-      <div class="flex items-center gap-2">
-        <span>📝</span>
+      <div class="feature-item">
+        <div class="feature-icon">📝</div>
         <span>可视化报告 - 生成交互式的分析报告</span>
       </div>
     </div>
-    <div class="flex flex-wrap gap-4 text-sm text-gray-400">
-      <span>研究日期：2026-01-28</span>
-      <span>应用场景：Agent 调试、性能基准测试、工作流优化</span>
+    <div style="margin-top: 2rem; font-family: 'Space Mono', monospace; font-size: 0.875rem; color: #F7C59F;">
+      <p>研究日期：2026-01-28</p>
+      <p style="margin-top: 0.5rem;">应用场景：Agent 调试、性能基准测试、工作流优化</p>
     </div>
   </section>
 </MainLayout>

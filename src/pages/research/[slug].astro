@@ -14,23 +14,181 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<MainLayout title={entry.data.title}>
-  <article class="bg-gradient-to-r from-blue-50 to-purple-50 p-8 rounded-lg border border-blue-100 mb-8">
-    <div class="mb-6">
-      <h1 class="text-3xl font-bold text-gray-900 mb-4">{entry.data.title}</h1>
-      <div class="flex items-center gap-4 text-sm text-gray-600">
-        <time>{entry.data.date.toLocaleDateString('zh-CN')}</time>
-        {entry.data.tags.length > 0 && (
-          <div class="flex gap-2">
-            {entry.data.tags.map((tag) => (
-              <span class="px-2 py-1 bg-white text-blue-700 rounded">#{tag}</span>
-            ))}
-          </div>
-        )}
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .article-container {
+    animation: fadeInUp 0.8s ease-out both;
+  }
+
+  .article-card {
+    background: linear-gradient(135deg, #FEF9E7 0%, #F7C59F 20%, #FEF9E7 40%);
+    border: 3px solid #FF6B35;
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .article-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FF6B35' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 3px solid #FF6B35;
+    position: relative;
+    z-index: 1;
+  }
+
+  .article-meta time {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #FF6B35;
+    background: #FEF9E7;
+    padding: 0.5rem 1rem;
+    border: 2px solid #FF6B35;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    padding: 0.25rem 0.75rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background: #FF6B35;
+    color: #FEF9E7;
+  }
+
+  .content {
+    font-size: 1.125rem;
+    line-height: 2;
+    max-width: 800px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .content :global(h2) {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2rem;
+    margin: 3rem 0 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #2EC4B6;
+  }
+
+  .content :global(h3) {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.5rem;
+    margin: 2rem 0 1rem;
+    color: #FF6B35;
+  }
+
+  .content :global(p) {
+    margin-bottom: 1.5rem;
+    color: #1A1A2E;
+  }
+
+  .content :global(ul), .content :global(ol) {
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+  }
+
+  .content :global(li) {
+    margin-bottom: 0.75rem;
+    color: #1A1A2E;
+  }
+
+  .content :global(code) {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.875rem;
+    background: #F7C59F;
+    color: #1A1A2E;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  .content :global(pre) {
+    background: #1A1A2E;
+    color: #FEF9E7;
+    padding: 2rem;
+    border-radius: 0;
+    overflow-x: auto;
+    margin: 2rem 0;
+    border: 2px solid #2EC4B6;
+  }
+
+  .content :global(pre code) {
+    background: transparent;
+    padding: 0;
+    color: inherit;
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .content :global(a) {
+    color: #2EC4B6;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+  }
+
+  .content :global(a:hover) {
+    color: #FF6B35;
+    background: #FEF9E7;
+  }
+
+  .content :global(blockquote) {
+    border-left: 4px solid #F7C59F;
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.25rem;
+    color: #666;
+  }
+</style>
+
+<div class="article-container">
+  <article class="article-card">
+    <h1 style="font-size: clamp(2.5rem, 5vw, 3.5rem); margin-bottom: 1.5rem;">
+      {entry.data.title}
+    </h1>
+    <div class="article-meta">
+      <time>{entry.data.date.toLocaleDateString('zh-CN')}</time>
+      <div class="tags">
+        {entry.data.tags.map((tag) => <span class="tag">#{tag}</span>)}
       </div>
     </div>
-    <div class="prose prose-blue max-w-none">
+    <div class="content">
       <Content />
     </div>
   </article>
-</MainLayout>
+</div>
