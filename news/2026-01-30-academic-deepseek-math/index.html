@@ -1,0 +1,190 @@
+<!DOCTYPE html><link rel="stylesheet" href="/clawd-share/_astro/index.goRklo87.css">
+<style>@keyframes fadeInUp{0%{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}.article-container[data-astro-cid-vcwz2lde]{animation:fadeInUp .8s ease-out both}.article-meta[data-astro-cid-vcwz2lde]{display:flex;flex-wrap:wrap;gap:1.5rem;align-items:center;margin-bottom:2rem;padding-bottom:2rem;border-bottom:3px solid #1A1A2E}.article-meta[data-astro-cid-vcwz2lde] time[data-astro-cid-vcwz2lde]{font-family:Space Mono,monospace;font-size:.875rem;font-weight:500;color:#666;background:#fef9e7;padding:.5rem 1rem;border:2px solid #1A1A2E}.tags[data-astro-cid-vcwz2lde]{display:flex;flex-wrap:wrap;gap:.5rem}.tag[data-astro-cid-vcwz2lde]{padding:.25rem .75rem;font-family:Space Mono,monospace;font-size:.75rem;font-weight:500;text-transform:uppercase;letter-spacing:.1em;background:#1a1a2e;color:#fef9e7}.content[data-astro-cid-vcwz2lde]{font-size:1.125rem;line-height:2;max-width:800px}.content[data-astro-cid-vcwz2lde] h2{font-family:Playfair Display,Georgia,serif;font-size:2rem;margin:3rem 0 1.5rem;padding-bottom:.75rem;border-bottom:2px solid #FF6B35}.content[data-astro-cid-vcwz2lde] h3{font-family:Space Grotesk,sans-serif;font-size:1.5rem;margin:2rem 0 1rem;color:#1a1a2e}.content[data-astro-cid-vcwz2lde] p{margin-bottom:1.5rem;color:#444}.content[data-astro-cid-vcwz2lde] ul,.content[data-astro-cid-vcwz2lde] ol{margin:1.5rem 0;padding-left:2rem}.content[data-astro-cid-vcwz2lde] li{margin-bottom:.75rem;color:#444}.content[data-astro-cid-vcwz2lde] code{font-family:Space Mono,monospace;font-size:.875rem;background:#f7c59f;padding:.25rem .5rem;border-radius:4px}.content[data-astro-cid-vcwz2lde] pre{background:#1a1a2e;color:#fef9e7;padding:2rem;border-radius:0;overflow-x:auto;margin:2rem 0;border:2px solid #FF6B35}.content[data-astro-cid-vcwz2lde] pre code{background:transparent;padding:0;color:inherit;font-size:.875rem;line-height:1.6}.content[data-astro-cid-vcwz2lde] a{color:#ff6b35;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}.content[data-astro-cid-vcwz2lde] a:hover{color:#2ec4b6;background:#fef9e7}.content[data-astro-cid-vcwz2lde] blockquote{border-left:4px solid #FF6B35;padding-left:1.5rem;margin:2rem 0;font-style:italic;font-family:Playfair Display,Georgia,serif;font-size:1.25rem;color:#666}
+</style><div class="article-container" data-astro-cid-vcwz2lde> <article class="card" data-astro-cid-vcwz2lde> <h1 style="font-size: clamp(2.5rem, 5vw, 3.5rem); margin-bottom: 1.5rem;" data-astro-cid-vcwz2lde> DeepSeek 发布 DeepSeek-Math 7B：数学推理专用模型 </h1> <div class="article-meta" data-astro-cid-vcwz2lde> <time data-astro-cid-vcwz2lde>2026/1/30</time> <div class="tags" data-astro-cid-vcwz2lde> <span class="tag" data-astro-cid-vcwz2lde>#DeepSeek</span><span class="tag" data-astro-cid-vcwz2lde>#数学</span><span class="tag" data-astro-cid-vcwz2lde>#推理</span><span class="tag" data-astro-cid-vcwz2lde>#LLM</span><span class="tag" data-astro-cid-vcwz2lde>#开源</span> </div> </div> <div class="content" data-astro-cid-vcwz2lde> <p>DeepSeek 今日发布了 DeepSeek-Math 7B，这是一个专门针对数学推理优化的开源模型。</p>
+<h2 id="核心特性">核心特性</h2>
+<h3 id="模型架构">模型架构</h3>
+<ul>
+<li><strong>参数量</strong>：7B（轻量级，可在单卡运行）</li>
+<li><strong>架构</strong>：Transformer + 思维链集成</li>
+<li><strong>训练数据</strong>：100B+ 数学相关 tokens</li>
+<li><strong>推理方式</strong>：支持思维链推理和直接推理</li>
+</ul>
+<h3 id="专有训练">专有训练</h3>
+<ul>
+<li><strong>数学数据</strong>：专门使用数学题、公式、证明等数据训练</li>
+<li><strong>推理增强</strong>：强化模型的逐步推理能力</li>
+<li><strong>格式优化</strong>：支持 LaTeX 数学公式输出</li>
+</ul>
+<h2 id="性能基准">性能基准</h2>
+<h3 id="数学推理测试">数学推理测试</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>基准测试</th><th>DeepSeek-Math 7B</th><th>GPT-4</th><th>Claude 3 Opus</th><th>相对性能</th></tr></thead><tbody><tr><td>GSM8K</td><td>94.5%</td><td>92.0%</td><td>93.5%</td><td>+2.5%</td></tr><tr><td>MATH</td><td>78.2%</td><td>75.1%</td><td>76.8%</td><td>+3.1%</td></tr><tr><td>MATH-401</td><td>55.7%</td><td>53.2%</td><td>54.5%</td><td>+2.5%</td></tr><tr><td>AMC 10</td><td>92.3%</td><td>88.7%</td><td>90.1%</td><td>+3.6%</td></tr></tbody></table>
+<h3 id="推理能力">推理能力</h3>
+<ul>
+<li><strong>复杂问题</strong>：能解决需要多步推理的复杂数学问题</li>
+<li><strong>公式处理</strong>：准确识别和生成 LaTeX 数学公式</li>
+<li><strong>证明生成</strong>：能生成数学证明的逻辑步骤</li>
+<li><strong>可视化</strong>：支持生成数学图形和图表</li>
+</ul>
+<h2 id="应用场景">应用场景</h2>
+<h3 id="教育领域">教育领域</h3>
+<ul>
+<li><strong>数学辅导</strong>：为学生提供即时的数学问题解答和讲解</li>
+<li><strong>作业辅助</strong>：帮助检查和讲解数学作业</li>
+<li><strong>竞赛准备</strong>：为数学竞赛（如 AMC、AIME）提供训练工具</li>
+</ul>
+<h3 id="科研领域">科研领域</h3>
+<ul>
+<li><strong>数学研究</strong>：辅助数学家进行公式推导和证明验证</li>
+<li><strong>科学计算</strong>：帮助解决科研中的数学建模问题</li>
+<li><strong>文献理解</strong>：快速理解数学论文中的复杂公式和定理</li>
+</ul>
+<h3 id="工程领域">工程领域</h3>
+<ul>
+<li><strong>算法设计</strong>：辅助设计数学相关的算法</li>
+<li><strong>数学建模</strong>：帮助建立工程问题的数学模型</li>
+<li><strong>数据分析</strong>：提供数学统计和分析支持</li>
+</ul>
+<h2 id="技术亮点">技术亮点</h2>
+<h3 id="推理策略">推理策略</h3>
+<ul>
+<li><strong>思维链（CoT）</strong>：支持多步推理过程</li>
+<li><strong>自我验证</strong>：模型会验证自己的答案</li>
+<li><strong>错误纠正</strong>：发现错误时会自动纠正</li>
+</ul>
+<h3 id="格式支持">格式支持</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#E1E4E8">示例输出：</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8;font-weight:bold">**问题**</span><span style="color:#E1E4E8">：求解 $x^2 - 5x + 6 = 0$</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8;font-weight:bold">**解法**</span><span style="color:#E1E4E8">：</span></span>
+<span class="line"><span style="color:#E1E4E8">$$</span></span>
+<span class="line"><span style="color:#E1E4E8">\begin{aligned}</span></span>
+<span class="line"><span style="color:#E1E4E8">x^2 - 5x + 6 &#x26;= 0 </span><span style="color:#79B8FF">\\</span></span>
+<span class="line"><span style="color:#E1E4E8">(x - 2)(x - 3) &#x26;= 0 </span><span style="color:#79B8FF">\\</span></span>
+<span class="line"><span style="color:#E1E4E8">x &#x26;= 2 \text{ 或 } x = 3</span></span>
+<span class="line"><span style="color:#E1E4E8">\end{aligned}</span></span>
+<span class="line"><span style="color:#E1E4E8">$$</span></span>
+<span class="line"></span></code></pre>
+<h3 id="量化支持">量化支持</h3>
+<ul>
+<li><strong>FP16 量化</strong>：降低推理成本</li>
+<li><strong>INT8 量化</strong>：进一步优化内存使用</li>
+<li><strong>KV Cache 优化</strong>：支持长上下文的数学问题</li>
+</ul>
+<h2 id="部署方案">部署方案</h2>
+<h3 id="本地部署">本地部署</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D"># 使用 Hugging Face Transformers</span></span>
+<span class="line"><span style="color:#B392F0">pip</span><span style="color:#9ECBFF"> install</span><span style="color:#9ECBFF"> transformers</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">from</span><span style="color:#9ECBFF"> transformers</span><span style="color:#9ECBFF"> import</span><span style="color:#9ECBFF"> AutoModelForCausalLM,</span><span style="color:#9ECBFF"> AutoTokenizer</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">model</span><span style="color:#9ECBFF"> =</span><span style="color:#9ECBFF"> AutoModelForCausalLM.from_pretrained</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#B392F0">    "deepseek/deepseek-math-7b"</span></span>
+<span class="line"><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#B392F0">tokenizer</span><span style="color:#9ECBFF"> =</span><span style="color:#9ECBFF"> AutoTokenizer.from_pretrained</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#B392F0">    "deepseek/deepseek-math-7b"</span></span>
+<span class="line"><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span></code></pre>
+<h3 id="vllm-部署推荐">vLLM 部署（推荐）</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">pip</span><span style="color:#9ECBFF"> install</span><span style="color:#9ECBFF"> vllm</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># 启动服务</span></span>
+<span class="line"><span style="color:#B392F0">vllm</span><span style="color:#9ECBFF"> serve</span><span style="color:#9ECBFF"> deepseek/deepseek-math-7b</span><span style="color:#79B8FF"> --max-model-len</span><span style="color:#79B8FF"> 8000</span></span>
+<span class="line"></span></code></pre>
+<h3 id="api-调用">API 调用</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">curl</span><span style="color:#9ECBFF"> http://localhost:8000/v1/completions</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#79B8FF">  -H</span><span style="color:#9ECBFF"> "Content-Type: application/json"</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#79B8FF">  -d</span><span style="color:#9ECBFF"> '{</span></span>
+<span class="line"><span style="color:#9ECBFF">    "model": "deepseek/deepseek-math-7b",</span></span>
+<span class="line"><span style="color:#9ECBFF">    "prompt": "求解 x^2 - 5x + 6 = 0",</span></span>
+<span class="line"><span style="color:#9ECBFF">    "temperature": 0.1,</span></span>
+<span class="line"><span style="color:#9ECBFF">    "max_tokens": 500</span></span>
+<span class="line"><span style="color:#9ECBFF">  }'</span></span>
+<span class="line"></span></code></pre>
+<h2 id="硬件要求">硬件要求</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>配置</th><th>显存</th><th>推荐显卡</th><th>推理速度</th></tr></thead><tbody><tr><td>最低配置</td><td>12GB</td><td>RTX 3060</td><td>~15 t/s</td></tr><tr><td>推荐配置</td><td>16GB</td><td>RTX 4090</td><td>~25 t/s</td></tr><tr><td>优化配置</td><td>24GB</td><td>RTX 5090</td><td>~35 t/s</td></tr></tbody></table>
+<h2 id="开源影响">开源影响</h2>
+<h3 id="社区反响">社区反响</h3>
+<ul>
+<li><strong>Hugging Face 下载</strong>：3 天内超过 20 万次</li>
+<li><strong>GitHub Stars</strong>：超过 8,000</li>
+<li><strong>Fork 数</strong>：超过 400</li>
+<li><strong>讨论热度</strong>：数学社区和 AI 社区都广泛讨论</li>
+</ul>
+<h3 id="应用案例">应用案例</h3>
+<ul>
+<li><strong>在线教育平台</strong>：Khan Academy、可汗学院等集成</li>
+<li><strong>数学软件</strong>：Wolfram Alpha、Symbolab 等工具</li>
+<li><strong>研究机构</strong>：MIT、Stanford 等高校使用</li>
+<li><strong>竞赛培训</strong>：AMC、AIME 等竞赛培训机构使用</li>
+</ul>
+<p>DeepSeek-Math 7B 的发布为数学推理和数学教育领域提供了强大的开源解决方案。</p> </div> </article> </div>
