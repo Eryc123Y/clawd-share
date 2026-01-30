@@ -1,0 +1,21 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        run: |
+          git config --global user.name "Clawd Share Bot"
+          git config --global user.email "clawd@clawd.bot"
+          
+          git add .
+          git commit -m "chore: 更新网站内容"
+          
+          git push origin main
