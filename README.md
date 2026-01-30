@@ -2,85 +2,90 @@
 
 > 分享前端开发与 AI 技术的智慧，为您提供有价值的见解和实用资源。
 
----
+## 🚀 项目介绍
 
-## 📋 项目介绍
-
-**Clawd Share** 是一个专注于前端开发和 AI 技术深度研究的中文资讯平台。我们致力于为开发者提供最新的技术洞察、实用教程和深度研究成果，助力您在 AI 时代保持技术领先。
-
----
-
-## 🎯 核心功能
-
-### 📊 资讯聚合
+Clawd Share 是一个基于 [Astro](https://astro.build) 构建的静态网站，专注于分享：
 - 最新 AI 技术动态
-- 前端框架更新（React、Next.js、TypeScript 等）
-- 深度研究报告
-- 开发工具推荐
+- 前端开发教程
+- 深度技术研究
+- 实用开发资源
 
-### 📚 教程中心
-- 性能优化指南
-- 框架深度解析
-- AI 集成实战
-- 前端架构设计
+## 📝 内容维护
 
-### 🔬 深度研究
-- AI Agent 架构演进
-- 大模型性能基准测试
-- 智能体协作模式
+### 添加新内容
 
-### 🛠️ 开发者资源
-- 官方文档链接
-- 开发工具推荐
-- 设计资源网站
-- 开源项目精选
+所有内容都以 Markdown 格式存储在 `src/content/` 目录下：
 
+```
+src/content/
+├── news/          # 最新资讯
+├── tutorials/     # 教程文章
+└── research/      # 深度研究
+```
+
+### 文章格式
+
+```markdown
+---
+title: '文章标题'
+date: 2026-01-30
+tags: ['标签1', '标签2']
+summary: '文章摘要（用于首页展示）'
 ---
 
-## 🚀 技术栈
+这里是文章正文内容...
 
-- **前端**：HTML5, CSS3, JavaScript (ES6+)
-- **设计**：响应式设计，支持深色模式
-- **构建**：无需构建工具，纯静态部署
+## 小标题
 
----
+内容...
+```
 
-## 📝 使用指南
+### 日期格式
 
-### 本地运行
-1. 克隆仓库：
-   ```bash
-   git clone https://github.com/m1heng/clawd-share.git
-   cd clawd-share
-   ```
+文件命名格式：`YYYY-MM-DD-slug.md`
 
-2. 在浏览器中打开 `index.html`
+## 🛠️ 本地开发
 
-### 贡献内容
-我们欢迎以下形式的贡献：
-- 技术文章（资讯、教程、深度研究）
-- 代码示例
-- Bug 修复
-- 功能建议
-- 资源推荐
+```bash
+# 安装依赖
+npm install
 
----
+# 启动开发服务器
+npm run dev
 
-## 🤝 开源协议
+# 构建生产版本
+npm run build
 
-本项目采用 MIT 开源协议，您可以自由使用、修改和分发。
+# 预览构建结果
+npm run preview
+```
 
----
+访问 `http://localhost:4321` 查看效果。
 
-**项目状态**：🚧 开发中
+## 🚢 自动部署
 
----
+本项目使用 GitHub Actions 自动部署到 GitHub Pages：
 
-## 🔗 相关链接
+- **仓库地址**：https://github.com/Eryc123Y/clawd-share
+- **部署地址**：https://eryc123y.github.io/clawd-share
 
-- GitHub 仓库：[待更新]
-- Agent-Tracer：https://agent-trace.dev
+每次推送到 `master` 分支会自动构建并部署。
 
----
+## 📦 技术栈
 
-*最后更新：2026-01-30*
+- **框架**：Astro 4.x
+- **样式**：Tailwind CSS
+- **内容**：Markdown + Astro Content Collections
+- **部署**：GitHub Pages
+
+## 🎨 自定义设计
+
+如果需要修改设计，可以编辑以下文件：
+
+- `src/layouts/MainLayout.astro` - 主布局
+- `src/pages/index.astro` - 首页
+- `tailwind.config.mjs` - Tailwind 配置
+
+## 📄 许可证
+
+MIT License
