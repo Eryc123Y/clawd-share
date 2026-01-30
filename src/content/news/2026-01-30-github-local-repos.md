@@ -2,6 +2,7 @@
 title: 'GitHub Copilot Workspace 支持本地代码库'
 date: 2026-01-30
 tags: ['GitHub', 'Copilot', 'AI编程', '本地开发']
+category: '开源社区'
 summary: 'GitHub 宣布 Copilot Workspace 现已支持连接本地代码库，提供更灵活的 AI 辅助编程体验。'
 ---
 

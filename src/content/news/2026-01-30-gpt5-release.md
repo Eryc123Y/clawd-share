@@ -2,6 +2,7 @@
 title: 'GPT-5 发布：推理速度提升 3 倍'
 date: 2026-01-30
 tags: ['LLM', 'OpenAI', 'GPT-5', '推理']
+category: '产业界'
 summary: 'OpenAI 发布 GPT-5 模型，推理速度比前代提升 3 倍，成本降低 40%，支持 1M token 上下文。'
 ---
 

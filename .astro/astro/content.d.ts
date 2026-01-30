@@ -141,9 +141,9 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"news": {
-"2026-01-28-github-copilot.md": {
-	id: "2026-01-28-github-copilot.md";
-  slug: "2026-01-28-github-copilot";
+"2026-01-30-ai-chip-stocks.md": {
+	id: "2026-01-30-ai-chip-stocks.md";
+  slug: "2026-01-30-ai-chip-stocks";
   body: string;
   collection: "news";
   data: InferEntrySchema<"news">
@@ -151,6 +151,48 @@ declare module 'astro:content' {
 "2026-01-30-ai-year.md": {
 	id: "2026-01-30-ai-year.md";
   slug: "2026-01-30-ai-year";
+  body: string;
+  collection: "news";
+  data: InferEntrySchema<"news">
+} & { render(): Render[".md"] };
+"2026-01-30-claude-37.md": {
+	id: "2026-01-30-claude-37.md";
+  slug: "2026-01-30-claude-37";
+  body: string;
+  collection: "news";
+  data: InferEntrySchema<"news">
+} & { render(): Render[".md"] };
+"2026-01-30-github-local-repos.md": {
+	id: "2026-01-30-github-local-repos.md";
+  slug: "2026-01-30-github-local-repos";
+  body: string;
+  collection: "news";
+  data: InferEntrySchema<"news">
+} & { render(): Render[".md"] };
+"2026-01-30-gpt5-release.md": {
+	id: "2026-01-30-gpt5-release.md";
+  slug: "2026-01-30-gpt5-release";
+  body: string;
+  collection: "news";
+  data: InferEntrySchema<"news">
+} & { render(): Render[".md"] };
+"2026-01-30-llama-4-405b.md": {
+	id: "2026-01-30-llama-4-405b.md";
+  slug: "2026-01-30-llama-4-405b";
+  body: string;
+  collection: "news";
+  data: InferEntrySchema<"news">
+} & { render(): Render[".md"] };
+"2026-01-30-llm-survey-paper.md": {
+	id: "2026-01-30-llm-survey-paper.md";
+  slug: "2026-01-30-llm-survey-paper";
+  body: string;
+  collection: "news";
+  data: InferEntrySchema<"news">
+} & { render(): Render[".md"] };
+"2026-01-30-openai-valuation.md": {
+	id: "2026-01-30-openai-valuation.md";
+  slug: "2026-01-30-openai-valuation";
   body: string;
   collection: "news";
   data: InferEntrySchema<"news">
