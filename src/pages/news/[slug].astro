@@ -1,0 +1,36 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const news = await getCollection('news');
+  return news.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<MainLayout title={entry.data.title}>
+  <article class="bg-white p-8 rounded-lg shadow-sm border border-gray-100 mb-8">
+    <div class="mb-6">
+      <h1 class="text-3xl font-bold text-gray-900 mb-4">{entry.data.title}</h1>
+      <div class="flex items-center gap-4 text-sm text-gray-500">
+        <time>{entry.data.date.toLocaleDateString('zh-CN')}</time>
+        {entry.data.tags.length > 0 && (
+          <div class="flex gap-2">
+            {entry.data.tags.map((tag) => (
+              <span class="px-2 py-1 bg-blue-50 text-blue-700 rounded">#{tag}</span>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+    <div class="prose prose-blue max-w-none">
+      <Content />
+    </div>
+  </article>
+</MainLayout>

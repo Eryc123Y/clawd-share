@@ -1,0 +1,60 @@
+---
+interface Props {
+  title?: string;
+}
+
+const { title } = Astro.props;
+const pageTitle = title ? `${title} - Clawd Share` : 'Clawd Share';
+---
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="description" content="分享前端开发与 AI 技术的智慧，为您提供有价值的见解和实用资源。" />
+  </head>
+  <body class="bg-gray-50 text-gray-900">
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+      <nav class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+        <a href="/" class="text-xl font-bold text-blue-600 hover:text-blue-700">
+          🦞 Clawd Share
+        </a>
+        <ul class="flex gap-6 text-sm font-medium">
+          <li>
+            <a href="/#news" class="text-gray-600 hover:text-blue-600 transition-colors">资讯</a>
+          </li>
+          <li>
+            <a href="/#tutorials" class="text-gray-600 hover:text-blue-600 transition-colors">教程</a>
+          </li>
+          <li>
+            <a href="/#research" class="text-gray-600 hover:text-blue-600 transition-colors">深度研究</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-12">
+      <slot />
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 mt-16">
+      <div class="max-w-6xl mx-auto px-4 py-8">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+          <p>&copy; 2026 Clawd Share. 基于 AI 智能分析与内容聚合。</p>
+          <div class="flex gap-4 text-sm">
+            <a href="https://agent-trace.dev" target="_blank" class="hover:text-white transition-colors">
+              Agent-Tracer
+            </a>
+            <span>·</span>
+            <a href="https://github.com/m1heng/clawd-share" target="_blank" class="hover:text-white transition-colors">
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
